@@ -18,20 +18,20 @@ msgstr ""
 #. module: base_name_search_improved
 #: help:ir.model,name_search_use_standard:0
 msgid "First try to find matches with the standard search"
-msgstr "Önce standart arama ile sonuçları bulmaya çalışır"
+msgstr ""
 
 #. module: base_name_search_improved
 #: model:ir.model,name:base_name_search_improved.model_ir_model
 msgid "Models"
-msgstr "Modeller"
+msgstr ""
 
 #. module: base_name_search_improved
 #: field:ir.model,name_search_ids:0
 msgid "Name Search Fields"
-msgstr "İsim Arama Alanları"
+msgstr ""
 
 #. module: base_name_search_improved
 #: field:ir.model,name_search_use_standard:0
 msgid "Use standard search"
-msgstr "Use standard search"
+msgstr ""
 
