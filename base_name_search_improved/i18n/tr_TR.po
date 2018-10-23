@@ -27,7 +27,7 @@ msgstr ""
 #. module: base_name_search_improved
 #: model:ir.model,name:base_name_search_improved.model_ir_model
 msgid "Models"
-msgstr "Tipler"
+msgstr "Modeller"
 
 #. module: base_name_search_improved
 #: field:ir.model,name_search_ids:0
@@ -38,3 +38,4 @@ msgstr ""
 #: field:ir.model,name_search_use_standard:0
 msgid "Use standard search"
 msgstr ""
+
