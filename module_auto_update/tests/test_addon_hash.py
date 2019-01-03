@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 # Copyright 2018 ACSONE SA/NV.
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
@@ -21,7 +20,7 @@ class TestAddonHash(unittest.TestCase):
     def test_basic(self):
         files = list(addon_hash._walk(
             self.sample_dir,
-            exclude_patterns=[],
+            exclude_patterns=["*/__pycache__/*"],
             keep_langs=[],
         ))
         self.assertEqual(files, [

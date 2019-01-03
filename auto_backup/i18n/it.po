@@ -1,7 +1,7 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
 # * auto_backup
-# 
+#
 # Translators:
 # OCA Transbot <transbot@odoo-community.org>, 2018
 msgid ""
@@ -12,10 +12,10 @@ msgstr ""
 "PO-Revision-Date: 2018-03-03 10:08+0000\n"
 "Last-Translator: OCA Transbot <transbot@odoo-community.org>, 2018\n"
 "Language-Team: Italian (https://www.transifex.com/oca/teams/23907/it/)\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: auto_backup
@@ -42,6 +42,12 @@ msgstr "Il backup automatico del DB è pianificato come segue:"
 #. module: auto_backup
 #: model:mail.message.subtype,name:auto_backup.mail_message_subtype_failure
 msgid "Backup Failed"
+msgstr "Backup Fallito"
+
+#. module: auto_backup
+#: model:ir.model.fields,field_description:auto_backup.field_db_backup_backup_format
+#, fuzzy
+msgid "Backup Format"
 msgstr "Backup Fallito"
 
 #. module: auto_backup
@@ -76,24 +82,30 @@ msgid "Cannot duplicate a configuration."
 msgstr "Impossibile duplicare una configurazione."
 
 #. module: auto_backup
+#: model:ir.model.fields,help:auto_backup.field_db_backup_backup_format
+#, fuzzy
+msgid "Choose the format for this backup."
+msgstr "Scegliere il tipo di archiviazione per questo metodo di backup. "
+
+#. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_method
 msgid "Choose the storage method for this backup."
 msgstr "Scegliere il tipo di archiviazione per questo metodo di backup. "
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:249
+#: code:addons/auto_backup/models/db_backup.py:265
 #, python-format
 msgid "Cleanup of old database backups failed."
 msgstr "Eliminazione dei vecchi backup di database non riuscita."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:128
+#: code:addons/auto_backup/models/db_backup.py:137
 #, python-format
 msgid "Connection Test Failed!"
 msgstr "Test connessione Fallito!"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:123
+#: code:addons/auto_backup/models/db_backup.py:132
 #, python-format
 msgid "Connection Test Succeeded!"
 msgstr "Test connessione avvenuto con successo!"
@@ -114,14 +126,14 @@ msgid "Database Backup"
 msgstr ""
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:203
+#: code:addons/auto_backup/models/db_backup.py:219
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_failure
 #, python-format
 msgid "Database backup failed."
 msgstr "Backup del Database non riuscito."
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:211
+#: code:addons/auto_backup/models/db_backup.py:227
 #: model:mail.message.subtype,description:auto_backup.mail_message_subtype_success
 #, python-format
 msgid "Database backup succeeded."
@@ -138,7 +150,7 @@ msgid "Display Name"
 msgstr "Nome da visualizzare"
 
 #. module: auto_backup
-#: code:addons/auto_backup/models/db_backup.py:114
+#: code:addons/auto_backup/models/db_backup.py:123
 #, python-format
 msgid ""
 "Do not save backups on your filestore, or you will backup your backups too!"
@@ -176,8 +188,7 @@ msgstr "Aiuto"
 #. module: auto_backup
 #: sql_constraint:db.backup:0
 msgid "I cannot remove backups from the future. Ask Doc for that."
-msgstr ""
-"Impossibile rimuovere backup dal futuro. Cercare nella Documentazione."
+msgstr "Impossibile rimuovere backup dal futuro. Cercare nella Documentazione."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_id
@@ -220,8 +231,8 @@ msgid ""
 "Path to the private key file. Only the Odoo user should have read "
 "permissions for that file."
 msgstr ""
-"Percorso al file della chiave privata. Soltanto l'utente Odoo dovrebbe avere"
-" il permesso in lettura di questo file."
+"Percorso al file della chiave privata. Soltanto l'utente Odoo dovrebbe avere "
+"il permesso in lettura di questo file."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_private_key
@@ -261,8 +272,7 @@ msgstr "Cerca l'azione denominata 'Pianificazione del backup'."
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid ""
-"Set the scheduler to active and fill in how often you want backups "
-"generated."
+"Set the scheduler to active and fill in how often you want backups generated."
 msgstr ""
 "Impostare lo scheduler per attivare e compilare la frequenza con cui si "
 "desidera generare il backup."
@@ -301,11 +311,10 @@ msgstr "La porta sul server FTP che accetta chiamate SSH/SFTP."
 #. module: auto_backup
 #: model:ir.model.fields,help:auto_backup.field_db_backup_sftp_user
 msgid ""
-"The username where the SFTP connection should be made with. This is the user"
-" on the external server."
+"The username where the SFTP connection should be made with. This is the user "
+"on the external server."
 msgstr ""
-"Il nome utente per la connessione SFTP. Questo è l'utente sul server "
-"esterno."
+"Il nome utente per la connessione SFTP. Questo è l'utente sul server esterno."
 
 #. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
@@ -313,8 +322,8 @@ msgid ""
 "Use SFTP with caution! This writes files to external servers under the path "
 "you specify."
 msgstr ""
-"Usare SFTP con cautela! Questa modalità scrive file nel percorso specificato"
-" su server esterni."
+"Usare SFTP con cautela! Questa modalità scrive file nel percorso specificato "
+"su server esterni."
 
 #. module: auto_backup
 #: model:ir.model.fields,field_description:auto_backup.field_db_backup_sftp_user
@@ -332,6 +341,16 @@ msgid "john"
 msgstr "john"
 
 #. module: auto_backup
+#: selection:db.backup,backup_format:0
+msgid "pg_dump custom format (without filestore)"
+msgstr ""
+
+#. module: auto_backup
 #: model:ir.ui.view,arch_db:auto_backup.view_backup_conf_form
 msgid "sftp.example.com"
 msgstr "sftp.example.com"
+
+#. module: auto_backup
+#: selection:db.backup,backup_format:0
+msgid "zip (includes filestore)"
+msgstr ""
