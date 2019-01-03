@@ -1,6 +1,6 @@
-.. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
-   :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3
+.. image:: https://img.shields.io/badge/licence-LGPL--3-blue.svg
+   :target: http://www.gnu.org/licenses/lgpl-3.0-standalone.html
+   :alt: License: LGPL-3
 
 ==========
 User roles
@@ -32,6 +32,9 @@ Configuration
 To configure this module, you need to go to *Configuration / Users / Roles*,
 and create a new role. From there, you can add groups to compose your role,
 and then associate users to it.
+
+You can also define default roles for a new user by editing the user called
+"Default User".
 
 Roles:
 
@@ -65,6 +68,7 @@ Contributors
 ------------
 
 * Sébastien Alix <sebastien.alix@osiell.com>
+* Antonio Russo <antonio.r@rwsdigital.com>
 
 Maintainer
 ----------
