@@ -6,8 +6,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-11-18 11:58+0000\n"
-"PO-Revision-Date: 2016-11-18 11:58+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -21,13 +19,13 @@ msgid "Access Controls"
 msgstr ""
 
 #. module: base_user_role
-#: field:res.users.role,menu_access:0
-msgid "Access Menu"
+#: model:ir.model,name:base_user_role.model_res_groups
+msgid "Access Groups"
 msgstr ""
 
 #. module: base_user_role
-#: field:res.users.role.line,is_enabled:0
-msgid "Enabled"
+#: field:res.users.role,menu_access:0
+msgid "Access Menu"
 msgstr ""
 
 #. module: base_user_role
@@ -46,6 +44,11 @@ msgid "Comment"
 msgstr ""
 
 #. module: base_user_role
+#: field:res.users.role,dynamic_group_condition:0
+msgid "Condition"
+msgstr ""
+
+#. module: base_user_role
 #: field:res.users.role,create_uid:0
 #: field:res.users.role.line,create_uid:0
 msgid "Created by"
@@ -61,6 +64,16 @@ msgstr ""
 #: field:res.users.role,display_name:0
 #: field:res.users.role.line,display_name:0
 msgid "Display Name"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role,is_dynamic:0
+msgid "Dynamic"
+msgstr ""
+
+#. module: base_user_role
+#: field:res.users.role.line,is_enabled:0
+msgid "Enabled"
 msgstr ""
 
 #. module: base_user_role
@@ -139,8 +152,8 @@ msgid "Rules"
 msgstr ""
 
 #. module: base_user_role
-#: field:res.users,scoring:0
-msgid "Scoring (%)"
+#: help:res.users.role,dynamic_group_condition:0
+msgid "The condition to be met for a user to be a member of this group. It is evaluated as python code at login time, you get `user` passed as a browse record"
 msgstr ""
 
 #. module: base_user_role
@@ -161,6 +174,11 @@ msgstr ""
 #. module: base_user_role
 #: model:ir.model,name:base_user_role.model_res_users_role
 msgid "User role"
+msgstr ""
+
+#. module: base_user_role
+#: model:ir.module.category,name:base_user_role.ir_module_category_role
+msgid "User roles"
 msgstr ""
 
 #. module: base_user_role
