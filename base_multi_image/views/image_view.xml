@@ -49,6 +49,12 @@
                             'required': [('storage', '=', 'db')],
                         }"
                         filename="filename"/>
+                    <field
+                        name="attachment_id"
+                        attrs="{
+                            'invisible': [('storage', '!=', 'attachment')],
+                            'required': [('storage', '=', 'attachment')],
+                        }"/>
                 </group>
                 <group string="Preview">
                     <field name="image_medium"
@@ -135,6 +141,7 @@
 
 <menuitem
     id="image_menu"
+    name='Multi Images'
     action="image_action"
     parent="base.menu_config"/>
 

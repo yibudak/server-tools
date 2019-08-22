@@ -28,7 +28,7 @@ class Image(models.Model):
     owner_model = fields.Char(
         required=True)
     storage = fields.Selection(
-        [('url', 'URL'), ('file', 'OS file'), ('db', 'Database')],
+        [('url', 'URL'), ('file', 'OS file'), ('db', 'Database'), ('attachment', 'Attachment')],
         required=True)
     name = fields.Char(
         'Image title',
@@ -45,6 +45,9 @@ class Image(models.Model):
         help="Image path")
     url = fields.Char(
         'Image remote URL')
+    
+    attachment_id = fields.Many2one('ir.attachment',string='Attachment')
+    
     image_main = fields.Binary(
         "Full-sized image",
         compute="_get_image")
@@ -122,6 +125,10 @@ class Image(models.Model):
         return False
 
     @api.multi
+    def _get_image_from_attachment(self):
+        return self.attachment_id.datas
+
+    @api.multi
     @api.depends('image_main')
     def _get_image_sizes(self):
         for s in self:
@@ -174,3 +181,9 @@ class Image(models.Model):
         if self.storage == 'db' and not self.file_db_store:
             raise exceptions.ValidationError(
                 'You must provide an attached file for the image.')
+            
+    @api.constrains('storage', 'attachment_id')
+    def _check_attachment(self):
+        if self.storage == 'attachment' and not self.attachment_id:
+            raise exceptions.ValidationError(
+                'You must provide an attachment for the image.')
