@@ -29,6 +29,7 @@ class Image(models.Model):
         required=True)
     storage = fields.Selection(
         [('url', 'URL'), ('file', 'OS file'), ('db', 'Database'), ('attachment', 'Attachment')],
+        default='attachment',
         required=True)
     name = fields.Char(
         'Image title',
@@ -40,6 +41,13 @@ class Image(models.Model):
     file_db_store = fields.Binary(
         'Image stored in database',
         filters='*.png,*.jpg,*.gif')
+    
+    file_attachment = fields.Binary(
+        'Image',
+        compute='_compute_file_attachment',
+        inverse='_inverse_file_attachment',
+        filters='*.png,*.jpg,*.gif')
+    
     path = fields.Char(
         "Image path",
         help="Image path")
@@ -71,6 +79,29 @@ class Image(models.Model):
         default=10)
     show_technical = fields.Boolean(
         compute="_show_technical")
+
+
+    @api.multi
+    def _inverse_file_attachment(self):
+        attachment_obj = self.env['ir.attachment']
+        for img in self:
+            if img.file_attachment:
+                if img.attachment_id:
+                    img.attachment_id.write({'datas':img.file_attachment})
+                else:
+                    img.attachment_id = attachment_obj.create({'name':'Product Image',
+                                                             'type':'binary',
+                                                             'res_model':'base_multi_image.image',
+                                                             'res_id':img.id,
+                                                             'datas': img.file_attachment})
+            else:
+                img.attachment_id.unlink()
+        
+    @api.multi
+    @api.depends('attachment_id','attachment_id.db_datas','attachment_id.store_fname')
+    def _compute_file_attachment(self):
+        for img in self:
+            img.file_attachment = img.attachment_id.datas
 
     @api.multi
     @api.depends('storage', 'path', 'file_db_store', 'url')
@@ -182,8 +213,4 @@ class Image(models.Model):
             raise exceptions.ValidationError(
                 'You must provide an attached file for the image.')
             
-    @api.constrains('storage', 'attachment_id')
-    def _check_attachment(self):
-        if self.storage == 'attachment' and not self.attachment_id:
-            raise exceptions.ValidationError(
-                'You must provide an attachment for the image.')
+    
