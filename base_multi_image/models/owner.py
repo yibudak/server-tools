@@ -11,30 +11,33 @@ class Owner(models.AbstractModel):
     _description = """ Wizard for base multi image """
 
     image_ids = fields.One2many(
-        comodel_name='base_multi_image.image',
-        inverse_name='owner_id',
-        string='Images',
+        comodel_name="base_multi_image.image",
+        inverse_name="owner_id",
+        string="Images",
         domain=lambda self: [("owner_model", "=", self._name)],
-        copy=True)
+        copy=True,
+    )
     image_main = fields.Binary(
         string="Main image",
         store=False,
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main")
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main",
+    )
     image_main_medium = fields.Binary(
         string="Medium image",
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main_medium",
-        store=False)
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main_medium",
+        store=False,
+    )
     image_main_small = fields.Binary(
         string="Small image",
-        compute="_get_multi_image",
-        inverse="_set_multi_image_main_small",
-        store=False)
+        compute="_compute_multi_image",
+        inverse="_inverse_multi_image_main_small",
+        store=False,
+    )
 
-    @api.multi
-    @api.depends('image_ids')
-    def _get_multi_image(self):
+    @api.depends("image_ids")
+    def _compute_multi_image(self):
         """Get the main image for this object.
 
         This is provided as a compatibility layer for submodels that already
@@ -46,7 +49,6 @@ class Owner(models.AbstractModel):
             s.image_main_medium = first.image_medium
             s.image_main_small = first.image_small
 
-    @api.multi
     def _set_multi_image(self, image=False, name=False):
         """Save or delete the main image for this record.
 
@@ -56,7 +58,7 @@ class Owner(models.AbstractModel):
         # Values to save
         values = {
             "storage": "db",
-            "file_db_store": tools.image_resize_image_big(image),
+            "file_db_store": tools.image_process(image, size=(1024, 1024)),
             "owner_model": self._name,
         }
         if name:
@@ -76,26 +78,22 @@ class Owner(models.AbstractModel):
             elif s.image_ids:
                 s.image_ids[0].unlink()
 
-    @api.multi
-    def _set_multi_image_main(self):
+    def _inverse_multi_image_main(self):
         self._set_multi_image(self.image_main)
 
-    @api.multi
-    def _set_multi_image_main_medium(self):
+    def _inverse_multi_image_main_medium(self):
         self._set_multi_image(self.image_main_medium)
 
-    @api.multi
-    def _set_multi_image_main_small(self):
+    def _inverse_multi_image_main_small(self):
         self._set_multi_image(self.image_main_small)
 
-    @api.multi
     def unlink(self):
         """Mimic `ondelete="cascade"` for multi images.
 
         Will be skipped if ``env.context['bypass_image_removal']`` == True
         """
         images = self.mapped("image_ids")
-        result = super(Owner, self).unlink()
-        if result and not self.env.context.get('bypass_image_removal'):
+        result = super().unlink()
+        if result and not self.env.context.get("bypass_image_removal"):
             images.unlink()
         return result
