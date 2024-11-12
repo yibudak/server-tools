@@ -18,9 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. module: base_import_default_enable_tracking
-#. openerp-web
-#: code:addons/base_import_default_enable_tracking/static/src/xml/base_import.xml:7
 #, python-format
-msgid "checked"
-msgstr "marcado"
+#~ msgid "checked"
+#~ msgstr "marcado"
