@@ -2,9 +2,10 @@
 # Copyright 2020 Hunki Enterprises BV <https://hunki-enterprises.com>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
+import ssl
 import traceback
+import urllib
 from collections import namedtuple
-from urllib.parse import urlparse
 
 import psycopg2
 
@@ -61,6 +62,8 @@ class ImportOdooDatabase(models.Model):
     _description = "An Odoo database to import"
 
     url = fields.Char(required=True)
+    ssl = fields.Boolean(compute="_compute_ssl", help="Use HTTPS")
+    ssl_bypass = fields.Boolean(help="Bypass SSL certificate check")
     database = fields.Char(required=True)
     user = fields.Char(default="admin", required=True)
     password = fields.Char(default="admin")
@@ -98,6 +101,11 @@ class ImportOdooDatabase(models.Model):
         required=True,
     )
     null_password = fields.Boolean(default=True)
+
+    @api.depends("url")
+    def _compute_ssl(self):
+        for this in self:
+            this.ssl = this.url and this.url.lower().startswith("https")
 
     def action_import(self):
         """Create a cronjob to run the actual import"""
@@ -695,19 +703,29 @@ class ImportOdooDatabase(models.Model):
 
     def _get_connection(self):
         self.ensure_one()
-        url = urlparse(self.url)
+        url = urllib.parse.urlparse(self.url)
         hostport = url.netloc.split(":")
         if len(hostport) == 1:
-            hostport.append("80")
+            hostport.append("443" if self.ssl else "80")
         host, port = hostport
         if not odoorpc:  # pragma: no cover
             raise exceptions.UserError(
                 _('Please install the "odoorpc" libary in your environment')
             )
+        opener = None
+        if self.ssl and self.ssl_bypass:
+            ctx = ssl.create_default_context()
+            ctx.check_hostname = False
+            ctx.verify_mode = ssl.CERT_NONE
+            opener = urllib.request.build_opener(
+                urllib.request.HTTPSHandler(context=ctx)
+            )
+
         remote = odoorpc.ODOO(
             host,
-            protocol="jsonrpc+ssl" if url.scheme == "https" else "jsonrpc",
+            protocol="jsonrpc+ssl" if self.ssl else "jsonrpc",
             port=int(port),
+            opener=opener,
         )
         remote.login(self.database, self.user, self.password)
         return remote

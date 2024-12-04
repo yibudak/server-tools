@@ -41,6 +41,11 @@
                             widget="url"
                             attrs="{'readonly': [('cronjob_running', '=', True)]}"
                         />
+                        <field name="ssl" />
+                        <field
+                            name="ssl_bypass"
+                            attrs="{'readonly': [('cronjob_running', '=', True)], 'invisible': [('ssl', '=', False)]}"
+                        />
                         <field
                             name="database"
                             attrs="{'readonly': [('cronjob_running', '=', True)]}"
