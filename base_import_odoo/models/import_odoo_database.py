@@ -194,7 +194,7 @@ class ImportOdooDatabase(models.Model):
                 )
                 try:
                     self._run_import_model(context)
-                except:  # noqa: E722
+                except Exception:
                     # pragma: no cover
                     error = traceback.format_exc()
                     self.env.cr.rollback()
@@ -730,7 +730,7 @@ class ImportOdooDatabase(models.Model):
             if not this.status_data:
                 status = False
             else:
-                status = self.env['ir.qweb']._render(template_ref, {"object": this})
+                status = self.env["ir.qweb"]._render(template_ref, {"object": this})
             this.status_html = status
 
     @api.depends("cronjob_id")
