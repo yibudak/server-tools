@@ -26,4 +26,5 @@
     ],
     "installable": True,
     "external_dependencies": {"python": ["odoorpc"]},
+    "maintainers": ["hbrunn", "thomaspaulb"],
 }
