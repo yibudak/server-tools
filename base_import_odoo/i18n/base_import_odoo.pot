@@ -4,7 +4,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 14.0\n"
+"Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -54,6 +54,11 @@ msgid "By reference"
 msgstr ""
 
 #. module: base_import_odoo
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database__ssl_bypass
+msgid "Bypass SSL certificate check"
+msgstr ""
+
+#. module: base_import_odoo
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__changeset_change_ids
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__changeset_change_ids
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__changeset_change_ids
@@ -72,6 +77,14 @@ msgstr ""
 #. module: base_import_odoo
 #: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model__extra_fields
 msgid "Comma-separated list of extra fields to query for"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__count_changesets
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__count_changesets
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__count_changesets
+#: model:ir.model.fields,field_description:base_import_odoo.field_ir_model_data__count_changesets
+msgid "Count Changesets"
 msgstr ""
 
 #. module: base_import_odoo
@@ -125,7 +138,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__display_name
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__display_name
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__display_name
-#: model:ir.model.fields,field_description:base_import_odoo.field_ir_model_data__display_name
 msgid "Display Name"
 msgstr ""
 
@@ -168,7 +180,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__id
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field__id
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model__id
-#: model:ir.model.fields,field_description:base_import_odoo.field_ir_model_data__id
 msgid "ID"
 msgstr ""
 
@@ -226,7 +237,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database____last_update
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_field____last_update
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database_model____last_update
-#: model:ir.model.fields,field_description:base_import_odoo.field_ir_model_data____last_update
 msgid "Last Modified on"
 msgstr ""
 
@@ -308,6 +318,7 @@ msgid "Password"
 msgstr ""
 
 #. module: base_import_odoo
+#. odoo-python
 #: code:addons/base_import_odoo/models/import_odoo_database.py:0
 #, python-format
 msgid "Please install the \"odoorpc\" libary in your environment"
@@ -385,6 +396,16 @@ msgid "Smart Search"
 msgstr ""
 
 #. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__ssl
+msgid "Ssl"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__ssl_bypass
+msgid "Ssl Bypass"
+msgstr ""
+
+#. module: base_import_odoo
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__status_data
 msgid "Status"
 msgstr ""
@@ -402,6 +423,30 @@ msgid ""
 msgstr ""
 
 #. module: base_import_odoo
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database__count_pending_changeset_changes
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field__count_pending_changeset_changes
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model__count_pending_changeset_changes
+#: model:ir.model.fields,help:base_import_odoo.field_ir_model_data__count_pending_changeset_changes
+msgid "The number of pending changes of this record"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database__count_pending_changesets
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field__count_pending_changesets
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model__count_pending_changesets
+#: model:ir.model.fields,help:base_import_odoo.field_ir_model_data__count_pending_changesets
+msgid "The number of pending changesets of this record"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database__count_changesets
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_field__count_changesets
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database_model__count_changesets
+#: model:ir.model.fields,help:base_import_odoo.field_ir_model_data__count_changesets
+msgid "The overall number of changesets of this record"
+msgstr ""
+
+#. module: base_import_odoo
 #: model_terms:ir.ui.view,arch_db:base_import_odoo.view_import_odoo_database_qweb
 msgid ""
 "To fix this, create mappings for the remote ids listed, or if this is not "
@@ -415,6 +460,7 @@ msgid "Type"
 msgstr ""
 
 #. module: base_import_odoo
+#. odoo-python
 #: code:addons/base_import_odoo/models/import_odoo_database.py:0
 #, python-format
 msgid "Unhandled field type %s"
@@ -426,6 +472,7 @@ msgid "Unique"
 msgstr ""
 
 #. module: base_import_odoo
+#. odoo-python
 #: code:addons/base_import_odoo/models/import_odoo_database.py:0
 #, python-format
 msgid "Unknown mapping"
@@ -434,6 +481,11 @@ msgstr ""
 #. module: base_import_odoo
 #: model:ir.model.fields,field_description:base_import_odoo.field_import_odoo_database__url
 msgid "Url"
+msgstr ""
+
+#. module: base_import_odoo
+#: model:ir.model.fields,help:base_import_odoo.field_import_odoo_database__ssl
+msgid "Use HTTPS"
 msgstr ""
 
 #. module: base_import_odoo
